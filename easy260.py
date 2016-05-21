@@ -1,3 +1,5 @@
+#Input: What place did your pet take in the content?
+#Output: A printed list of all the places your pet did not take.
 place = int(input("What place did your dog take? "))
 
 for i in range(100):
