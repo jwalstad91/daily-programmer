@@ -19,34 +19,30 @@ let inputs = ['12 + 25',
             '-75 / 3',
             '7 / 3',
             '0 / 0',
-            '5 ^ 3',
-            '-5 ^ 3',
-            '-8 ^ 3',
-            '-1 ^ 1',
-            '1 ^ 1',
+            //'5 ^ 3',
+            //'-5 ^ 3',
+            //'-8 ^ 3',
+            //'-1 ^ 1',
+            //'1 ^ 1',
             '0 ^ 5',
             '5 ^ 0',
-            '10 ^ -3'];
-let input = "-12 * -9";
-let parsedInput = input.split(" ");
-let x = parseInt(parsedInput[0]);
-let y = parseInt(parsedInput[2]);
-let z = parsedInput[1];
-calculate(x, y, z);
+            //'10 ^ -3'
+            ];
+
+inputs.forEach(element => {
+    let parsedInput = element.split(" ");
+    let x = parseInt(parsedInput[0]);
+    let y = parseInt(parsedInput[2]);
+    let z = parsedInput[1];
+    calculate(x, y, z);
+});
 
 function add(x: number, y: number) {
     return x + y;
 }
 
 function subtract(x: number, y: number) {
-    if (x >= y) {
-        y = negate(y);
-    }
-    else {
-        x = negate(x);
-    }
-
-    return add(x, y);
+    return add(x, negate(y));
 }
 
 function multiply(x: number, y: number) {
@@ -72,19 +68,27 @@ function multiply(x: number, y: number) {
 
 function divide(x: number, y: number) {
     let i = 0; // quotient
-    let j = x; // dividend 
-    // y is divisor
+    let j = x; // dividend
+    let k = y; // divisor
+
+    if (x < 0) { j = negate(x); }
+    if (y < 0) { k = negate(y); }
+
+    // Handle division by 0
+    if ((x == 0) || y == 0) { return 0; }
 
     do {
         // Will not handle remainders; divides up to the nearest whole integer
-        if (j >= y) {
-            j = subtract(j, y);
+        if (j >= k) {
+            j = subtract(j, k);
             i++;
         }
         else { j = -1; }
     } while (j > 0);
 
-    return i;
+    if ((x < 0) && !(y < 0)) { return negate(i); }
+    else if (!(x < 0) && (y < 0)) { return negate(i); }
+    else { return i; }
 }
 
 // x is equal to a base value
@@ -118,5 +122,5 @@ function calculate(x: number, y: number, z: string) {
     else if (z == "^") { result = exponent(x, y); }
     else { console.log("Invalid operation."); }
 
-    console.log(result);
+    console.log(x + " " + z + " " + y + " is equal to: " + result + ".");
 }
