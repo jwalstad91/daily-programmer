@@ -19,23 +19,30 @@ let inputs = ['12 + 25',
             '-75 / 3',
             '7 / 3',
             '0 / 0',
-            //'5 ^ 3',
-            //'-5 ^ 3',
-            //'-8 ^ 3',
-            //'-1 ^ 1',
-            //'1 ^ 1',
+            '5 ^ 3',
+            '-5 ^ 3',
+            '-8 ^ 3',
+            '-1 ^ 1',
+            '1 ^ 1',
             '0 ^ 5',
             '5 ^ 0',
-            //'10 ^ -3'
+            '10 ^ -3'
             ];
 
-inputs.forEach(element => {
-    let parsedInput = element.split(" ");
-    let x = parseInt(parsedInput[0]);
-    let y = parseInt(parsedInput[2]);
-    let z = parsedInput[1];
-    calculate(x, y, z);
-});
+// inputs.forEach(element => {
+//     let parsedInput = element.split(" ");
+//     let x = parseInt(parsedInput[0]);
+//     let y = parseInt(parsedInput[2]);
+//     let z = parsedInput[1];
+//     calculate(x, y, z);
+// });
+
+let input = "5 ^ 3";
+let parsedInput = input.split(" ");
+let x = parseInt(parsedInput[0]);
+let y = parseInt(parsedInput[2]);
+let z = parsedInput[1];
+calculate(x, y, z);
 
 function add(x: number, y: number) {
     return x + y;
@@ -75,7 +82,7 @@ function divide(x: number, y: number) {
     if (y < 0) { k = negate(y); }
 
     // Handle division by 0
-    if ((x == 0) || y == 0) { return 0; }
+    if ((x == 0) || y == 0) { return undefined; }
 
     do {
         // Will not handle remainders; divides up to the nearest whole integer
@@ -91,21 +98,20 @@ function divide(x: number, y: number) {
     else { return i; }
 }
 
-// x is equal to a base value
-// y is equal to a power to raise x by
+// x: base
+// y: power
 function exponent(x: number, y: number) {
-    let result = 0;
+    let j = x;
 
-    // 0 case
+    // Handling for 0 case
     if (x == 0) { return 0; }
     else if (y == 0) { return 1; }
 
-    for (let i = 0; i < y; i++) {
-        for (let j = 0; j < i; j++) {
-            
-        }
-    }
-    return result;
+    // Handling for power of 1 case
+    if (y == 1) { return x; }
+
+    // You need a break condition to do recursion here
+    exponent(multiply(x, x), i);
 }
 
 function negate(num: number) {
