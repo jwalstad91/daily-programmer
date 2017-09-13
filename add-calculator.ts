@@ -4,7 +4,7 @@
     // negative cases
 
 // setup. clean this up later to be nicer-looking
-let input = "12 * 2";
+let input = "-1337 - -1337";
 let parsedInput = input.split(" ");
 let x = parseInt(parsedInput[0]);
 let y = parseInt(parsedInput[2]);
@@ -17,20 +17,27 @@ function add(x: number, y: number) {
 }
 
 function subtract(x: number, y: number) {
-    return 0;
+    if (x >= y) {
+        y = negate(y);
+    }
+    else {
+        x = negate(x);
+    }
+
+    return add(x, y);
 }
 
 function multiply(x: number, y: number) {
-    let z = 0;
+    let result = 0;
 
     // Check for case 0
     if (x == 0 || y == 0) { return 0; }
     
     for (let i = 0; i < y; i++) {
-        z += x;
+        result += x;
     }
 
-    return z;
+    return result;
 }
 
 function divide(x: number, y: number) {
@@ -40,7 +47,22 @@ function divide(x: number, y: number) {
 // x is equal to a base value
 // y is equal to a power to raise x by
 function exponent(x: number, y: number) {
-    return 0;
+    let result = 0;
+
+    // 0 case
+    if (x == 0) { return 0; }
+    else if (y == 0) { return 1; }
+
+    for (let i = 0; i < y; i++) {
+        for (let j = 0; j < i; j++) {
+            
+        }
+    }
+    return result;
+}
+
+function negate(num: number) {
+    return -num;
 }
 
 function calculate(x: number, y: number, z: string) {
