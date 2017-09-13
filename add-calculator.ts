@@ -4,7 +4,7 @@
     // negative cases
 
 // setup. clean this up later to be nicer-looking
-let input = "-1337 - -1337";
+let input = "72 / 12";
 let parsedInput = input.split(" ");
 let x = parseInt(parsedInput[0]);
 let y = parseInt(parsedInput[2]);
@@ -40,7 +40,20 @@ function multiply(x: number, y: number) {
 }
 
 function divide(x: number, y: number) {
-    return 0;
+    let i = 0; // quotient
+    let j = x; // dividend 
+    // y is divisor
+
+    do {
+        // Will not handle remainders; divides up to the nearest whole integer
+        if (j >= y) {
+            j = subtract(j, y);
+            i++;
+        }
+        else { j = -1; }
+    } while (j > 0);
+
+    return i;
 }
 
 // x is equal to a base value
