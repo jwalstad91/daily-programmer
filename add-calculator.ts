@@ -12,8 +12,7 @@ let z = parsedInput[1];
 calculate(x, y, z);
 
 function add(x: number, y: number) {
-    let result = x + y;
-    return result;
+    return x + y;
 }
 
 function subtract(x: number, y: number) {
