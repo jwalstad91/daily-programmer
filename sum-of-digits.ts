@@ -4,7 +4,7 @@ https://www.reddit.com/r/dailyprogrammer/comments/6zvjre/20170913_challenge_331_
 `
 
 // [base, power]
-let inputs = [[2, 4]];
+let inputs = [[2, 3]];
 //, [2, 1234], [11, 4000], [50, 3000]];
 
 inputs.forEach(element => {

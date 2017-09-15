@@ -72,6 +72,8 @@ function multiply(x: number, y: number) {
     return result;
 }
 
+// x: divisor
+// y: dividend
 function divide(x: number, y: number) {
     let i = 0; // quotient
     let j = x; // dividend
