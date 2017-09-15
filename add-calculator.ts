@@ -1,10 +1,9 @@
-// TODO
-    // cleanup
-    // 0 cases
-    // negative cases
-    // handling for non integral answer
-
-let inputs = ['12 + 25',
+`
+# 331 - The Adding Calculator
+https://www.reddit.com/r/dailyprogrammer/comments/6ze9z0/20170911_challenge_331_easy_the_adding_calculator/
+`
+let inputs = [
+            '12 + 25',
             '-30 + 100',
             '100 - 30',
             '100 - -30',
@@ -29,20 +28,20 @@ let inputs = ['12 + 25',
             '10 ^ -3'
             ];
 
-// inputs.forEach(element => {
-//     let parsedInput = element.split(" ");
-//     let x = parseInt(parsedInput[0]);
-//     let y = parseInt(parsedInput[2]);
-//     let z = parsedInput[1];
-//     calculate(x, y, z);
-// });
+inputs.forEach(element => {
+    let parsedInput = element.split(" ");
+    let x = parseInt(parsedInput[0]);
+    let y = parseInt(parsedInput[2]);
+    let z = parsedInput[1];
+    calculate(x, y, z);
+});
 
-let input = "5 ^ 3";
-let parsedInput = input.split(" ");
-let x = parseInt(parsedInput[0]);
-let y = parseInt(parsedInput[2]);
-let z = parsedInput[1];
-calculate(x, y, z);
+// let input = "5 ^ 3";
+// let parsedInput = input.split(" ");
+// let x = parseInt(parsedInput[0]);
+// let y = parseInt(parsedInput[2]);
+// let z = parsedInput[1];
+// calculate(x, y, z);
 
 function add(x: number, y: number) {
     return x + y;
@@ -101,17 +100,20 @@ function divide(x: number, y: number) {
 // x: base
 // y: power
 function exponent(x: number, y: number) {
-    let j = x;
+    let result = x;
 
     // Handling for 0 case
     if (x == 0) { return 0; }
     else if (y == 0) { return 1; }
-
     // Handling for power of 1 case
-    if (y == 1) { return x; }
+    else if (y == 1) { return x; }
 
-    // You need a break condition to do recursion here
-    exponent(multiply(x, x), i);
+    while (y > 1) {
+        result = multiply(result, x);
+        y--;
+    }
+    
+    return result;
 }
 
 function negate(num: number) {
